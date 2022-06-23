@@ -1,6 +1,7 @@
 package com.example.locale
 
 import android.app.Application
+import android.os.Build.VERSION
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
@@ -13,8 +14,13 @@ class LocaleApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        if (VERSION.SDK_INT <= 32) {
+            Api32AndBelow.init(this)
+        }
+
         checkLocale()
     }
+
 
     private fun checkLocale() {
         handler.postDelayed(1000) {

@@ -6,7 +6,7 @@ import android.icu.util.MeasureUnit
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.app.AppCompatDelegate.setApplicationLocales
 import androidx.core.os.LocaleListCompat
 import com.example.locale.databinding.LocaleActivityBinding
 import java.text.NumberFormat
@@ -33,6 +33,8 @@ class LocaleActivity : AppCompatActivity() {
         binding.setESButton.setOnClickListener {
             setLocale(Locale.forLanguageTag("es-ES"))
         }
+
+        render()
     }
 
     override fun onLocalesChanged(locales: LocaleListCompat) {
@@ -42,12 +44,7 @@ class LocaleActivity : AppCompatActivity() {
 
     private fun setLocale(locale: Locale) {
         val appLocale = LocaleListCompat.forLanguageTags(locale.toLanguageTag())
-        AppCompatDelegate.setApplicationLocales(appLocale)
-    }
-
-    override fun onResume() {
-        super.onResume()
-        render()
+        setApplicationLocales(appLocale)
     }
 
     private fun render() {
