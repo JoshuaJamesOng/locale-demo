@@ -43,6 +43,8 @@ class LocaleActivity : AppCompatActivity() {
     }
 
     private fun setLocale(locale: Locale) {
+        // Using AppCompat per-app language functionality
+        // This preference is saved and restored on app start-up (see AndroidManifest)
         val appLocale = LocaleListCompat.forLanguageTags(locale.toLanguageTag())
         setApplicationLocales(appLocale)
     }
